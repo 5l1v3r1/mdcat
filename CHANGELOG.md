@@ -7,6 +7,19 @@ This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html
 To publish a new release run `scripts/release` from the project directory.
 
 ## [Unreleased]
+### Changed
+- Rewrite the rendering algorithm to replace the `Context` god object; mdcat now
+  explicitly tracks a stack of focused states.  This simplifies the algorithm a
+  lot and makes relations between states and Markdown events explicit and easier
+  to understand.  It also solves numerous rendering issues in the old
+  algorithm; mdcat now
+    
+    - render margins after paragraphs more consistently,
+    - correctly indents code blocks inside other blocks such as quotes or lists,
+    - no longer emits an extra blank line before lists in certain situations,
+    - TK: add all other fixes
+
+
 ### Fixed
 - Do not fail with broken pipe error when rending large images (see [GH-134] by
   [@fspillner]).
